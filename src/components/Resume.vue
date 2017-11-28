@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <a href="https://drive.google.com/open?id=0B1GpWEfRwkduZDFEcllhMEFTeGs"
+    <a href="https://drive.google.com/file/d/1wPOtvdEnsY1JTbAvJZZ_pf8zj-ZcTRQy/view"
        target="_blank"
        title="Download in PDF"
        class="downlaod">
