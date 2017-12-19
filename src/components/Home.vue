@@ -11,8 +11,8 @@
         <p class="text">
           Hello, I am <strong>Bibhuti Poudyal</strong>, a programmer, designer, dreamer and an artist who likes art of every form.
           I am tech enthusiastic spending a lot of time with computer, learning and experimenting stuffs. I started programming in high school
-          and it's been approximately {{elapsedTime}} seconds till then.
-          I work mostly in web platform. And my other areas of interest include game development, mobile apps, browser Extensions,
+          and it's been approximately {{elapsedTime}} till then.
+          I work mostly in web and mobile platform. And my other areas of interest include game development, browser Extensions,
           AI, Machine learning, Natural language processing and computer vision.
         </p>
         <br>
@@ -48,7 +48,23 @@ export default {
       var self = this;
       setInterval(function () {
         final = Date.now();
-        self.elapsedTime = (parseInt((final - elapsed)/1000));
+        var seconds = (parseInt((final - elapsed)/1000));
+
+        var d = (60*60*24);
+        var h = 60*60;
+        var m = 60;
+
+        var days = parseInt(seconds/d);
+        var rem = seconds%d;
+
+        var hours =  parseInt(rem/h);
+        rem = rem%h;
+
+        var mins =  parseInt(rem/m);
+        rem =  parseInt(rem%m);
+
+        self.elapsedTime = `${days} days ${hours} hrs ${mins} mins ${rem} secs`;
+
       }, 1000);
     }
   },

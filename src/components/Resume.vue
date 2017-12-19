@@ -55,8 +55,8 @@
             <ul>
               <li v-for="a in achievements">
                 <label>{{a.title}}</label><br>
-                {{a.metadata}}
-                <br><br>
+                <div v-html="a.metadata"></div>
+                <br>
               </li>
             </ul>
           </div>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <a href="https://drive.google.com/file/d/1wPOtvdEnsY1JTbAvJZZ_pf8zj-ZcTRQy/view"
+    <a href="https://drive.google.com/open?id=1wPOtvdEnsY1JTbAvJZZ_pf8zj-ZcTRQy"
        target="_blank"
        title="Download in PDF"
        class="downlaod">
@@ -131,7 +131,7 @@ export default {
       technicalSkills:[
         {
           name: 'HTML5',
-          score: 90
+          score: 95
         },
         {
           name: 'CSS3',
@@ -143,7 +143,7 @@ export default {
         },
         {
           name: 'Vue JS',
-          score: 70
+          score: 75
         },
         {
           name: 'React JS',
@@ -159,7 +159,7 @@ export default {
         },
         {
           name: 'Python',
-          score: 60
+          score: 65
         },
         {
           name: 'PHP',
@@ -170,8 +170,8 @@ export default {
           score: 60
         },
         {
-          name: 'Java',
-          score: 40
+          name: 'Java(Android)',
+          score: 70
         },
         {
           name: 'C#',
@@ -183,10 +183,10 @@ export default {
         },
         {
           name: 'MySQL',
-          score: 50
+          score: 60
         }
       ],
-      extratechnicalSkills:'Flask, Django, Express, Socket.io, Firebase, Chrome extensions, ElectronJs, WinForms, PhaserJS, libGDX, MongoDB, Arduino, Google Maps API, Google Drive API, Dropbox API, OpenCV, SCSS, Bootstrap, Materialize.',
+      extratechnicalSkills:'Android, Laravel, Flask, Django, Express, Socket.io, Firebase, Chrome extensions, ElectronJs, WinForms, PhaserJS, libGDX, MongoDB, Arduino, Google Maps API, Google Drive API, Dropbox API, OpenCV, SCSS, Bootstrap, Materialize.',
       otherSkills: 'Adobe Photoshop, Illustrator',
       academics:[
         {
@@ -210,6 +210,10 @@ export default {
         {
           title: 'Luniva Code Jatra',
           metadata: '1st Place for project "Traversity'
+        },
+        {
+          title: 'The Kathmandu Post',
+          metadata: 'An <a href="http://epaper.ekantipur.com/the-kathmandu-post/2017-11-01/6" target="_blank"> article</a> regarding Cyber Security.'
         }
       ],
       traningsWorkshops: [
@@ -271,6 +275,8 @@ export default {
     margin-bottom: 30px;
     background-image: url("https://qph.ec.quoracdn.net/main-thumb-90418459-200-whsmopziphktwwyulynuhdrojnwtpzsu.jpeg");
     background-size: cover;
+    rotation-point:50% 50%;
+    rotation:20deg;
   }
   .content{
     margin: 10px;
@@ -324,3 +330,7 @@ export default {
   }
 
 </style>
+
+
+Happy birthday Simran sathi. 
+Many many happy returns of the day and wish you a very special and fateful year ahead.
