@@ -5,14 +5,16 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state:{
-    tabs:[
-      {name: "Home", path: 'home'},
+    tabs:[      
+      {name: "Intro", path: 'intro'},
+      {name: "Blog", path: 'blogs'},
       {name: "Resume", path: 'resume'},
       {name: "Projects", path: 'projects'},
       {name: "Art Works", path: 'artWorks'},
       {name: "About", path: 'about'}
     ],
     projects: [],
+    blogs: null,
     artworks: [
       {
         title: 'Landscape',
@@ -309,8 +311,8 @@ export const store = new Vuex.Store({
       "nesC": "#94B0C7"
     },
     filters:[],
-    activeTab: "home",
-
+    activeTab: "intro",
+    currentBlog: null
   },
 
   getters: {
@@ -331,6 +333,12 @@ export const store = new Vuex.Store({
     },
     filters(state){
       return state.filters;
+    },
+    blogs(state){
+      return state.blogs;
+    },
+    currentBlog(state){
+      return state.currentBlog;
     }
   },
 
@@ -354,8 +362,46 @@ export const store = new Vuex.Store({
       });
       state.projects = parsed;
     },
+
+    setBlogs(state, blogs){
+      state.blogs = {};
+      var months= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      for(var i=0; i<blogs.length; i++){
+        var b = blogs[i];
+        var date = new Date(b.published);
+        var year = date.getFullYear() + "";
+        var month = months[date.getMonth()];
+        var day = date.getDate();
+
+        b["year"] = year;
+        b["month"] = month;
+        b["day"] = day;
+
+        if(!state.blogs[year]) state.blogs[year] = [];
+        state.blogs[year].push(b);
+      }
+
+      console.log(state.blogs);
+
+    },
+
     setActiveTab(state, activeTab){
       state.activeTab = activeTab;
+    },
+
+    setCurrentBlog(state, currentBlog){
+      var months= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var date = new Date(currentBlog.published);
+      var year = date.getFullYear() + "";
+      var month = months[date.getMonth()];
+      var day = date.getDate();
+      
+      
+      currentBlog["year"] = year;
+      currentBlog["month"] = month;
+      currentBlog["day"] = day;
+
+      state.currentBlog = currentBlog;
     }
   },
 
@@ -370,5 +416,28 @@ export const store = new Vuex.Store({
           console.log(e);
         })
     },
+    getBlogs(context, callback){
+      axios.get('https://www.googleapis.com/blogger/v3/blogs/6929645571399469422/posts?key=AIzaSyC39mYo0t5fxe3QlQ5cd2xKDnzgEVUL7JU')
+        .then(response => {
+          //console.log(response);
+          context.commit('setBlogs', response.data.items);
+          callback();
+        })
+        .catch(e => {
+          console.log(e);
+        })
+    },
+
+    getCurrentBlog(context, payload){
+      axios.get(`https://www.googleapis.com/blogger/v3/blogs/6929645571399469422/posts/${payload.id}?key=AIzaSyC39mYo0t5fxe3QlQ5cd2xKDnzgEVUL7JU`)
+      .then(response => {
+        context.commit('setCurrentBlog', response.data);
+        payload.callback();
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    }
+
   }
 });

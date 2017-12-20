@@ -26,6 +26,7 @@
         var self = this;
         this.$store.dispatch('getProjects', function () {
         });
+        
       }
     },
 

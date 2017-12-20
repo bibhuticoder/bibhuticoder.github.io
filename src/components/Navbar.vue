@@ -26,7 +26,7 @@ export default {
   name: 'navbar',
   methods: {
     navigate(to){
-      this.$router.push(to);
+      this.$router.replace({path: '/' + to});
       this.$store.commit('setActiveTab', to);
     }
   },
