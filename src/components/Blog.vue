@@ -5,8 +5,7 @@
       <h1>{{currentBlog.title}}</h1>      
       <span>{{currentBlog.day + " " + currentBlog.month + ", " + currentBlog.year}}</span>
       <br><br>
-      <span class="" v-html="currentBlog.content"></span>
-      
+      <span class="" v-html="currentBlog.content"></span>      
       <br>
       <br>
       <hr>
@@ -56,15 +55,14 @@ export default {
 <style scoped>
   
  .content{
-   width: 75%;
-   margin: 0 auto;
-    font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
-    
-    font-weight: 400;
-    font-style: normal;
-    font-size: 21px;
-    line-height: 1.58;
-    letter-spacing: -.003em;
+    width: 75%;
+    margin: 0 auto;
+    font-family: Segoe UI !important;    
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 21px !important;
+    line-height: 1.58 !important;
+    letter-spacing: -.003em !important;
  }
 
 

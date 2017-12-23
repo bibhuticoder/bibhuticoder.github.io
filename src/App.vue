@@ -51,7 +51,6 @@
     height: calc(100vh - 50px);
     overflow: auto;
     background-image: url("./assets/back.png");
-    text-align: center;
     padding: 20px;
     border-style: solid;
     border: #24292E;

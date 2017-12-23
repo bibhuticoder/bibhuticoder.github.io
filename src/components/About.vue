@@ -5,12 +5,13 @@
       <h1>About the site</h1>
       <br><br>
     </div>
-    <p class="lead" style="font-weight: 300">
+    <p class="lead" style="font-weight: 300; text-align: center">
       This is my personal portfolio and a platform to share my knowledge and experiments with the world.
       The technologies powering this site are : Html, Css, Javascript, Vue Js(Vuex), github api.
       Almost all the projects listed here are open source on github. This site itself is open source.
       Its hosted as a github page at <a href="https://github.com/bibhuticoder/bibhuticoder.github.io" target="_blank">https://github.com/bibhuticoder/bibhuticoder.github.io</a>.
       The list of projects are obtained via <a href="https://developer.github.com/v3/" target="_blank"> github api</a> and the artworks(images) are hosted at google drive.
+      All the blog posts are originally written on Blogspot and feteched via Blogger API v3.
     </p>
 
     <br><br>

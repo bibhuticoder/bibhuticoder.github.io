@@ -4,9 +4,10 @@ import Intro from '@/components/Intro'
 import Resume from '@/components/Resume'
 import ArtWorks from '@/components/ArtWorks'
 import Projects from '@/components/Projects'
+import Quotes from '@/components/Quotes'
 import About from '@/components/About'
-import Blogs from '@/components/Blogs'
 import Blog from '@/components/Blog'
+import Bio from '@/components/Bio'
 
 Vue.use(Router)
 
@@ -19,11 +20,7 @@ export default new Router({
       name: 'start',
       component: Intro
     },
-    {
-      path: '/Blogs',
-      name: 'Blogs',
-      component: Blogs
-    },
+    
     {
       path: '/Blogs/:id',
       name: 'Blog',
@@ -49,6 +46,16 @@ export default new Router({
       name: 'Art Works',
       component: ArtWorks
     },
+    {
+      path: '/quotes',
+      name: 'Quotes',
+      component: Quotes
+    },
+    {
+      path: '/bio',
+      name: 'Bio',
+      component: Bio
+    },    
     {
       path: '/about',
       name: 'About',

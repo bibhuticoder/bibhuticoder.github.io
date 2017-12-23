@@ -7,9 +7,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="#">BIBHUTI</a>
       </div>
       <div class="collapse navbar-collapse" id="to-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-right">
           <li v-for="tab in tabs">
             <div :class="(tab.path===activeTab)? 'tab tab-active': 'tab'" v-on:click="navigate(tab.path)">{{tab.name}}</div>
           </li>
@@ -50,10 +51,10 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    min-height: 30px !important;
     z-index:10;
     background-color: #24292E;
-    /*box-shadow: 1px 1px 2px black;*/
+    border-style: none;
   }
 
   .tab{
