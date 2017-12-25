@@ -1,44 +1,62 @@
 <template>
-  <div class="container">
-    <div id="intro" class="shown container content">
-      <div class="profilePic"></div>
+  <div class="shown content">
+    <div class="container-fluid">
+    <div class="row">        
+        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+          <div class="intro">
+            <div class="profilePic"></div>
+            <br>
+            <div class="about-me">
+              <h2 class="lead headline center">Hey there!</h2>              
+              <p class="text">
+                I am <strong>Bibhuti Poudyal.</strong> This is my portfolio and a blog.
+                <hr>
+                View my <router-link to="/resume" class="link">resume</router-link>
+                and<router-link to="/projects" class="link"> projects</router-link>
+                <br>
+                Read my answers on <a href="https://www.quora.com/profile/Bibhuti-Poudyal" class="link">Quora</a>
+                <br>
+                Follow me on <a href="https://twitter.com/bibhuti_coder" class="link">Twitter</a>
+                <br>
+                Email me at <a href="mailto:bibhutipd@gmail.com" class="link">bibhutipd@gmail.com</a>              
+                <br><br>
+              </p>
 
-      <br>
-      <div class="about-me align-center">
-        <label style="color:green; font-weight: bold" class="lead">/* About a programmer */</label>
-        <br>
-        <br>
-        <p class="text">
-          Hello, I am <strong>Bibhuti Poudyal</strong>, a programmer, designer, dreamer and an artist who likes art of every form.
-          I am tech enthusiastic spending a lot of time with computer, learning and experimenting stuffs. I started programming in high school
-          and it's been approximately {{elapsedTime}} till then.
-          I work mostly in web and mobile platform. And my other areas of interest include game development, browser Extensions,
-          AI, Machine learning, Natural language processing and computer vision.
-        </p>
-        <br>
-        <br>
-
-        <div style="margin:0 auto; margin-top:10px; ">
-          <button v-for="h in handlers" class="circleBtn" :title="h.title">
-            <a :href="h.link" target="_blank"><img :src="h.img" /></a>
-          </button>
+              <div class="social-links">
+                <button v-for="(h, i) in socialLinks" class="circleBtn" :title="h.title" v-bind:key="i">
+                  <a :href="h.link" target="_blank">
+                    <div v-html="h.tag" :style="'color:' + h.color"></div>
+                  </a>
+                </button>
+              </div>              
+              <hr>
+               <p>
+                  <router-link to="/artworks" class="link">Artworks</router-link>
+                  <br> Digital arts and illustrations I did on my free time.
+                  <br><br>
+                  <router-link to="/quotes" class="link">Quotes</router-link>                 
+                  <br> I collect motivational and inspirational quotes as a part of my hobby.
+               </p>    
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+          <BlogList />
+        </div>
     </div>
-
+    </div>
   </div>
 </template>
 
 <script>
-
+import BlogList from '@/components/BlogList'
 export default {
-  components: {},
+ 
+
+  components: {BlogList},
   name: 'home',
   data(){
     return{
-      timer: null,
-      elapsedTime: 0,
-
     }
   },
   methods: {
@@ -66,67 +84,74 @@ export default {
         self.elapsedTime = `${days} days ${hours} hrs ${mins} mins ${rem} secs`;
 
       }, 1000);
-    }
+    },
   },
   computed:{
-    handlers(){
+    socialLinks(){
       return([
         {
           title: "Github",
           link: "https://github.com/bibhuticoder",
-          img: "static/git.png"
+          color: "#373737",
+          tag: '<i class="fa fa-github" aria-hidden="true"></i>'          
         },
         {
           title: "Google+",
           link: "https://plus.google.com/+Bibhutipd",
-          img: "static/google.png"
+          color: "maroon",
+          tag: '<i class="fa fa-google-plus" aria-hidden="true"></i>'   
         },
         {
           title: "Twitter",
           link: "https://twitter.com/bibhuti_coder",
-          img: "static/twitter.png"
+          color: "deepskyblue",
+          tag: '<i class="fa fa-twitter" aria-hidden="true"></i>'   
         },
         {
           title: "Quora",
           link: "https://www.quora.com/profile/Bibhuti-Poudyal",
-          img: "static/quora.png"
+          color: "maroon",
+          tag: '<i class="fa fa-quora" aria-hidden="true"></i>'   
         },
         {
           title: "LinkedIn",
           link: "https://www.linkedin.com/in/bibhuti-poudyal-4883aa116/",
-          img: "http://isitranslation.com/wp-content/uploads/2015/08/linkedin_circle_color-5122.jpg"
-        },
-        {
-          title: "FlipKarma",
-          link: "http://flipkarma.com/user/BibhutiAlmighty/",
-          img: "http://flipkarma.com/static/new/images/Logo.png"
+          color: "royalblue",
+          tag: '<i class="fa fa-linkedin" aria-hidden="true"></i>'
         }
       ]);
-    }
-  },
-  created(){
-    this.initTimer();
-  }
+    },
 
+  },
+  created(){}
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-  .container{
-    text-align: center;
+  
+  .intro{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: lightgray;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: lightgray;
+    font-weight: 500;
+    font-family: Segoe UI !important;
   }
 
-  .profilePic {
+  .profilePic {    
     margin: 0 auto;
-    margin-top: 50px;
-    height: 120px;
-    width: 120px;
+    margin-top: 10px;
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
-    background-image: url('https://avatars3.githubusercontent.com/u/8759270?v=4&s=460');
+    background-image: url('https://qph.ec.quoracdn.net/main-thumb-90418459-200-whsmopziphktwwyulynuhdrojnwtpzsu.jpeg');
     background-size: cover;
-    box-shadow: 1px 1px 5px grey;
     background-position: center;
   }
 
@@ -137,11 +162,11 @@ export default {
 
   .circleBtn {
     margin: 0 auto;
-    height: 40px;
-    width: 40px;
-    padding: 2px;
+    height: 35px;
+    width: 35px;
+    padding: 1px;
     border-radius: 100%;
-    background-color: lightgrey;
+    background-color: rgb(242, 239, 239);
     cursor: pointer;
     margin-right: 5px;
     margin-left: 5px;
@@ -154,10 +179,13 @@ export default {
     border-color: grey;
   }
 
-  .circleBtn img {
-    height: 30px;
-    width: 30px;
-    border-radius: 100%;
+  .headline{
+    color: #212121;
+    border-bottom-style: solid;
+    border-bottom-color: lightgray;
+    border-bottom-width: 1px;
+    font-weight: 600;    
   }
+
 
 </style>

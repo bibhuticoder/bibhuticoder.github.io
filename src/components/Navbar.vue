@@ -7,12 +7,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">BIBHUTI</a>
+
+        <div class="home" v-on:click="navigate('home')">          
+            <span class="white">Bibhuti</span>
+            <span class="green">Poudyal</span>
+        </div>
+        
+
+
       </div>
       <div class="collapse navbar-collapse" id="to-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li v-for="tab in tabs">
-            <div :class="(tab.path===activeTab)? 'tab tab-active': 'tab'" v-on:click="navigate(tab.path)">{{tab.name}}</div>
+          <li v-for="tab in tabs" v-bind:key="tab.name">
+            <div :class="(tab.path===activeTab)? 'tab tab-active': 'tab'"
+            v-on:click="navigate(tab.path)"
+            v-html="tab.name"></div>
           </li>
         </ul>
       </div>
@@ -25,21 +34,26 @@
 export default {
   components: {},
   name: 'navbar',
-  methods: {
-    navigate(to){
-      this.$router.replace({path: '/' + to});
-      this.$store.commit('setActiveTab', to);
+  data(){
+    return{
+      tabs:[      
+        {name: "Home", path: 'home'},
+        {name: "Resume", path: 'resume'},
+        {name: "Projects", path: 'projects'},
+        {name: '<i class="fa fa-question-circle" aria-hidden="true" style="font-size: 20px; margin-top:15px"></i>', path: 'about'}
+      ],
+      activeTab: "home",
     }
   },
 
-  computed: {
-    activeTab(){
-      return this.$store.state.activeTab;
-    },
-    tabs(){
-      return this.$store.state.tabs;
+  methods: {
+    navigate(to){
+      this.$router.replace({path: '/' + to});
+      this.activeTab = to;
     }
-  }
+  },
+
+  computed: {}
 
 }
 </script>
@@ -72,6 +86,26 @@ export default {
 
   .tab-active{
     color: whitesmoke;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    border-bottom-color: #79AB43;
+  }
+
+  .home{
+    margin-top: 14px;
+    margin-left: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  .green{
+    color: #79AB43;
+    font-family: 'Segoe UI';
+    margin-top: 5px;
+  }
+  .white{
+    color: whitesmoke;
+    font-family: 'Segoe UI';
   }
 
 </style>

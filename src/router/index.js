@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Intro from '@/components/Intro'
+import Home from '@/components/Home'
 import Resume from '@/components/Resume'
 import ArtWorks from '@/components/ArtWorks'
 import Projects from '@/components/Projects'
@@ -8,6 +8,7 @@ import Quotes from '@/components/Quotes'
 import About from '@/components/About'
 import Blog from '@/components/Blog'
 import Bio from '@/components/Bio'
+import Errors from '@/components/Errors'
 
 Vue.use(Router)
 
@@ -17,8 +18,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'start',
-      component: Intro
+      name: 'Start',
+      component: Home
     },
     
     {
@@ -27,9 +28,9 @@ export default new Router({
       component: Blog
     },
     {
-      path: '/Intro',
-      name: 'Intro',
-      component: Intro
+      path: '/Home',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/resume',
@@ -60,6 +61,15 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/errors/:type',
+      name: 'Errors',
+      component: Errors
+    },
+    {
+      path: "*",
+      component: Errors
     }
   ]
 })
