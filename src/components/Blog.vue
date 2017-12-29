@@ -117,6 +117,8 @@ export default {
 
   created() {
     this.fetchData(this.$route.params.id);
+    //set active tab
+    this.$store.commit('setCurrentTab', this.$options.name);
   },
 
 };

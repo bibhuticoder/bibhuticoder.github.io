@@ -1,18 +1,19 @@
 <template>  
     <div class="bio">
       <div class="pic"></div>
-      <p>        
+      <p>
+        <br>        
         Hello, I am Bibhuti Poudyal, a programmer, designer, dreamer and an artist who
         likes art of every form. I am tech enthusiastic spending a lot of time with computer,
         learning and experimenting stuffs.          
-        <br><br>
-       
+        <br>
         In my free time I experiment with different technologies. You can view all of my projects
         <a href="http://www.bibhutipoudyal.com.np/#/projects">here</a>. Also I write answers on
         <a href="https://www.quora.com/profile/Bibhuti-Poudyal">Quora</a>.
         Other than technical stuffs, I like books, movies, meditation, digital art and Cooking.
         I share all those experiences on my <a href="http://www.bibhutipoudyal.com.np/#/">blog</a>.
         Be sure to check it out. 
+        <br>
       </p>
     </div>
 </template>

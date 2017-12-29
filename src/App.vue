@@ -1,37 +1,22 @@
 <template>
-  <div id="app">
+  <div>
     <navbar></navbar>
-
     <transition name="fade">
-      <!--<div >-->
         <router-view id="view"></router-view>
-      <!--</div>-->
     </transition>
-
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
-import axios from "axios";
 
 export default {
-  components: {
-    Navbar
-  },
-  name: "app",
-  created() {
-  },
-
-  computed: {}
+  components: {Navbar},
+  name: "app"
 };
 </script>
 
 <style>
-#app {
-  width: 100%;
-  height: 100%;
-}
 
 #view {
   position: absolute;
@@ -39,10 +24,11 @@ export default {
   left: 0px;
   width: 100vw;
   height: calc(100vh - 50px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-image: url("./assets/back.png");
-  padding: 20px;
-  padding-right: 0px;
+  /* padding: 20px;
+  padding-right: 0px; */
   border-style: solid;
   border: #24292e;
 }
@@ -71,13 +57,17 @@ pre {
 
 }
 
- a{
-    color: #2E7D32;
-  
-  }
+a{
+  color: #2E7D32;
+  text-decoration: none;
+}
 
-  .center{
-    text-align: center;
-  }
+.center{
+  text-align: center;
+}
+
+.left{
+  text-align: left;
+}
 
 </style>

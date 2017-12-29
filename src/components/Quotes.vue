@@ -1,17 +1,27 @@
 <template>
-  <div class="container">
-    <div class="info">
-      <h2>Quotes and illustrations</h2>
-      <hr>
+  <div>
+      <br>
+      <h2 class="center">Quotes</h2>
+      <hr>    
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">          
+            <blockquote v-for="(quote, i) in quotes.set1" class="success" :key="i">
+              <p>{{quote.content}}</p>
+              <footer v-if="quote.author"><cite title="Source Title">{{quote.author}}</cite></footer>
+            </blockquote>          
+        </div>
+        <div class="col-md-6">          
+            <blockquote v-for="(quote, i) in quotes.set2" class="success" :key="i">
+              <p>{{quote.content}}</p>
+              <footer v-if="quote.author"><cite title="Source Title">{{quote.author}}</cite></footer>
+            </blockquote>           
+        </div>
+      </div>
     </div>
 
-    <div id="quote-list" class="container">
-      <blockquote v-for="quote in quotes" class="success">
-        <p>{{quote.content}}</p>
-        <footer v-if="quote.author"><cite title="Source Title">{{quote.author}}</cite></footer>
-      </blockquote>
-    </div>
-
+   
   </div>
 </template>
 
@@ -22,7 +32,7 @@ export default {
   name: 'quotes',
   data(){
     return{
-      quotes:[
+      allQuotes:[
         {content: 'A river cuts through a rock not beacuse of its power but its persistance.', author: null},
         {content: 'No matter how big your house is, how recent your Car is, how big your Bank balance is, our Graves will be the same size. STAY HUMBLE', author: null},
         {content: 'It might take a year, it might take a day, but what\'s meant to be will always find its way.', author: null},
@@ -65,11 +75,17 @@ export default {
   methods: {},
   computed:{
     quotes(){
-      return this.$store.getters.quotes;
-    },
+      let sets = {set1: [], set2: []};
+      for(var i=0; i<this.allQuotes.length/2; i++) sets.set1.push(this.allQuotes[i]);
+      for(var i=this.allQuotes.length/2; i<this.allQuotes.length; i++) sets.set2.push(this.allQuotes[i]);
+      return sets;
+    }
+    
   },
 
   created(){
+    //set active tab
+    this.$store.commit('setCurrentTab', this.$options.name);
   }
 
 }
@@ -78,7 +94,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 blockquote{
-  border-left-color: green;
+  border-left-color:#8BC34A;
+  width: 100%;
+}
+
+blockquote p {
+  width: 100%;
 }
 
 </style>

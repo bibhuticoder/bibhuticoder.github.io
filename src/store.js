@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
     projects: null,
     blogs: null,
     currentBlog: null,
+    currentTab: null
   },
 
   getters: {
@@ -19,10 +20,16 @@ export const store = new Vuex.Store({
     },    
     currentBlog(state){
       return state.currentBlog;
+    },
+    currentTab(state){
+      return state.currentTab;
     }
   },
 
   mutations:{
+    setCurrentTab(state, tab){
+      state.currentTab = tab;
+    },
     setProjects(state, projects){
       
       //remove forked projects
@@ -72,7 +79,6 @@ export const store = new Vuex.Store({
         })
     },
     getBlogs(context, callback){
-      // if(context.blogs !== null){callback();return;}
       axios.get(`https://www.googleapis.com/blogger/v3/blogs/6929645571399469422/posts?key=AIzaSyC39mYo0t5fxe3QlQ5cd2xKDnzgEVUL7JU&orderBy=published&fetchBodies=false`)
         .then(response => {
           context.commit('setBlogs', response.data.items);

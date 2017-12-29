@@ -7,19 +7,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
         <div class="home" v-on:click="navigate('home')">          
             <span class="white">Bibhuti</span>
             <span class="green">Poudyal</span>
         </div>
-        
-
-
       </div>
       <div class="collapse navbar-collapse" id="to-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li v-for="tab in tabs" v-bind:key="tab.name">
-            <div :class="(tab.path===activeTab)? 'tab tab-active': 'tab'"
+            <div :class="(tab.path===currentTab && currentTab !== null)? 'tab tab-active': 'tab'"
             v-on:click="navigate(tab.path)"
             v-html="tab.name"></div>
           </li>
@@ -41,20 +37,21 @@ export default {
         {name: "Resume", path: 'resume'},
         {name: "Projects", path: 'projects'},
         {name: '<i class="fa fa-question-circle" aria-hidden="true" style="font-size: 20px; margin-top:15px"></i>', path: 'about'}
-      ],
-      activeTab: "home",
+      ]
     }
   },
 
   methods: {
     navigate(to){
       this.$router.replace({path: '/' + to});
-      this.activeTab = to;
     }
   },
 
-  computed: {}
-
+  computed:{
+    currentTab(){
+      return this.$store.state.currentTab;
+    }
+  }
 }
 </script>
 
@@ -65,7 +62,6 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 30px !important;
     z-index:10;
     background-color: #24292E;
     border-style: none;
@@ -91,6 +87,7 @@ export default {
     border-bottom-color: #79AB43;
   }
 
+  /* Home at Top Left */
   .home{
     margin-top: 14px;
     margin-left: 10px;

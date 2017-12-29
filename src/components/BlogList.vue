@@ -1,16 +1,21 @@
 <template>
 
   <div class="blogs">
-      <h2 class="headline lead">
-        All blog posts
-        <label class="post-count" v-if="blogs">{{blogsCount}} posts</label>
-      </h2>
-
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">  All blog posts </p>
+        </div>
+        <div class="col-md-6">
+          <label class="post-count" v-if="blogs">{{blogsCount}} posts</label>
+        </div>
+      </div>
+           
       <div class="blog-list" v-if="blogs" v-for="(year, i) in years" v-bind:key="i">
         <label class="year"> <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;&nbsp;{{year}}</label>
-        <div class="row blog-row" v-for="(b, i) in blogs[year]" v-bind:key="i">
+        <div class="row blog-row" v-for="(b, i) in blogs[year]" v-bind:key="i" v-on:click="gotoBlog(b.id)">
           <div class="col-md-6">
-            <span class="title pull-left" v-on:click="gotoBlog(b.id)">{{b.title}}</span>
+            <span class="title pull-left">{{b.title}}</span>
           </div>
           <div class="col-md-6">
             <span class="pull-right">{{b.month + " " + b.day}}</span>
@@ -19,7 +24,6 @@
       </div>
 
       <div v-else>
-        <p class="lead">Loading</p>
         <img src="static/loading.gif" class="loading" />
       </div>
   </div>
@@ -101,9 +105,9 @@ export default {
 
 
 <style scoped>
-
-.blogs{
+.blogs {
   padding: 20px;
+  padding-top: 0px;
 }
 
 .blog-list {
@@ -112,7 +116,6 @@ export default {
   padding: 10px !important;
   text-align: left;
   font-size: 15px !important;
-  box-shadow: 1px 1px 2px whitesmoke;
 }
 
 .year {
@@ -121,22 +124,16 @@ export default {
   font-size: 20px;
 }
 
-.title {
-  transition: padding-left 0.2s, color 0.5s;
-  color: black;
-  font-weight: 100;
-}
-
-.title:hover {
-  cursor: pointer;
-  padding-left: 10px;
-  color: green;
-}
-
 .blog-row {
   margin: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  transition: padding-left 0.2s, color 0.5s;
+}
+.blog-row:hover {
+  padding-left: 10px;
+  color: green;
+  cursor: pointer;
 }
 
 .link {
@@ -150,11 +147,5 @@ export default {
   color: green;
   font-weight: 600;
   font-size: 15px;
-
-  /* padding: 5px;
-  border-style: solid;
-  border-color: green;
-  border-width: 1px;
-  border-radius: 5px; */
 }
 </style>

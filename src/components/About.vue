@@ -1,6 +1,6 @@
 <template>
   <div class="container center">
-    
+      <br>
       <h1>
         <i class="fa fa-cogs" aria-hidden="true"></i> &nbsp;
         How I built this site
@@ -34,13 +34,7 @@
         And any kind of suggestions regarding my projects, blogs or this site are highly appreciated.
       </p>
       <br>
-       <div class="social-links">
-          <button v-for="(h, i) in socialLinks" class="circleBtn" :title="h.title" v-bind:key="i">
-            <a :href="h.link" target="_blank">
-              <div v-html="h.tag" :style="'color:' + h.color"></div>
-            </a>
-          </button>
-        </div>  
+      <SocialHandlers />
     </div>
     
     <br>
@@ -48,81 +42,19 @@
 </template>
 
 <script>
-
+import SocialHandlers from '@/components/SocialHandlers'
 export default {
-  components: {},
+  components: {SocialHandlers},
   name: 'about',
-  methods: {
-
-  },
-  
-  computed:{
-    socialLinks(){
-      return([
-        {
-          title: "Github",
-          link: "https://github.com/bibhuticoder",
-          color: "#373737",
-          tag: '<i class="fa fa-github" aria-hidden="true"></i>'          
-        },
-        {
-          title: "Google+",
-          link: "https://plus.google.com/+Bibhutipd",
-          color: "maroon",
-          tag: '<i class="fa fa-google-plus" aria-hidden="true"></i>'   
-        },
-        {
-          title: "Twitter",
-          link: "https://twitter.com/bibhuti_coder",
-          color: "deepskyblue",
-          tag: '<i class="fa fa-twitter" aria-hidden="true"></i>'   
-        },
-        {
-          title: "Quora",
-          link: "https://www.quora.com/profile/Bibhuti-Poudyal",
-          color: "maroon",
-          tag: '<i class="fa fa-quora" aria-hidden="true"></i>'   
-        },
-        {
-          title: "LinkedIn",
-          link: "https://www.linkedin.com/in/bibhuti-poudyal-4883aa116/",
-          color: "royalblue",
-          tag: '<i class="fa fa-linkedin" aria-hidden="true"></i>'
-        }
-      ]);
-    }
-    
-  },
-
-  
+  methods: {},  
+  computed:{},  
   created(){
-
+    //set active tab
+    this.$store.commit('setCurrentTab', this.$options.name);
   }
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
- 
-  .circleBtn {
-    margin: 0 auto;
-    height: 35px;
-    width: 35px;
-    padding: 1px;
-    border-radius: 100%;
-    background-color: rgb(242, 239, 239);
-    cursor: pointer;
-    margin-right: 5px;
-    margin-left: 5px;
-    border-style: solid;
-    border-color: lightgrey;
-    transition: border-color 0.5s ease;
-  }
-
-  .circleBtn:hover {
-    border-color: grey;
-  }
-
 </style>

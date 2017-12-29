@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br>
     <div class="resume">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -101,8 +102,8 @@
     <a href="https://drive.google.com/open?id=1wPOtvdEnsY1JTbAvJZZ_pf8zj-ZcTRQy"
        target="_blank"
        title="Download in PDF"
-       class="downlaod">
-      <span class="glyphicon glyphicon-save-file"></span>
+       class="download">
+      <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
     </a>
 
   </div>
@@ -116,16 +117,15 @@ export default {
   data(){
     return{
       name: "Bibhuti Poudyal",
-      profession: "Programmer, Developer",
+      profession: "Programmer | Developer",
       contacts:{
         email: "bibhutipd@gmail.com",
         address: "Babarmahal, Kathmandu",
         mobile: "+977 9810293291",
-        website: "https://bibhuticoder.github.io"
+        website: "http://www.bibhutipoudyal.com.np"
       },
       qualificationsSummary:[
-        'Skills for developing desktop, mobile and web applications.',
-        'Experience in writing scripts and solving complex problems.',
+        'Skills for developing Desktop, Mobile and Web applications.',
         'A firm believer of teamwork with good communication and interpersonal skill'
       ],
       technicalSkills:[
@@ -162,7 +162,7 @@ export default {
           score: 65
         },
         {
-          name: 'PHP',
+          name: 'PHP (Laravel)',
           score: 80
         },
         {
@@ -186,7 +186,7 @@ export default {
           score: 60
         }
       ],
-      extratechnicalSkills:'Android, Laravel, Flask, Django, Express, Socket.io, Firebase, Chrome extensions, ElectronJs, WinForms, PhaserJS, libGDX, MongoDB, Arduino, Google Maps API, Google Drive API, Dropbox API, OpenCV, SCSS, Bootstrap, Materialize.',
+      extratechnicalSkills:'Android, Laravel, Firebase, Express, Socket.io, Flask, Django, Chrome extensions, ElectronJs, WinForms, PhaserJS, libGDX, MongoDB, Arduino, Google Maps API, Google Drive API, Dropbox API, OpenCV, SCSS, Bootstrap, Materialize.',
       otherSkills: 'Adobe Photoshop, Illustrator',
       academics:[
         {
@@ -209,7 +209,7 @@ export default {
         },
         {
           title: 'Luniva Code Jatra',
-          metadata: '1st Place for project "Traversity'
+          metadata: '1st Place for team project "Traversity'
         },
         {
           title: 'The Kathmandu Post',
@@ -233,7 +233,8 @@ export default {
     },
   },
   created(){
-
+    //set active tab
+    this.$store.commit('setCurrentTab', this.$options.name);
   }
 
 }
@@ -305,12 +306,12 @@ export default {
     list-style: none;
   }
 
-  .downlaod{
+  .download{
     height: 50px;
     width: 50px;
 
     position: fixed;
-    right: 20px;
+    right: 40px;
     bottom: 20px;
     border-radius: 100%;
     background-color: #607D8B;
@@ -319,18 +320,15 @@ export default {
     line-height: 50px;
 
     text-decoration: none;
-    color: white;
+    color: whitesmoke;
     font-size: 20px;
     text-align: center;
     transition: background-color 0.5s ease;
   }
 
-  .downlaod:hover{
-    background-color: #455A64;
+  .download:hover{
+    background-color: rgba(57, 73, 82, 0.981);
   }
 
 </style>
 
-
-Happy birthday Simran sathi. 
-Many many happy returns of the day and wish you a very special and fateful year ahead.

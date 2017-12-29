@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-
+    <br>
     <div v-if="projects">
       <div class="filter-list">
         <input type="text" class="search" placeholder="Search projects.." v-on:input="search" v-model="searchKeyword"/>
@@ -11,22 +11,16 @@
       </div>
 
       <div class="projects-list">
-        <div class="project" v-for="(p, i) in projects" :key="i">
-          <div class="title">
-            <a :href="p.demo_url" target="_blank" title="View Demo">{{p.name}}</a>
-            <a :href="p.html_url" target="_blank" class="code pull-right" title="View source at Github">
-              <i class="fa fa-github" aria-hidden="true"></i>
-            </a>
-          </div>
-          <p class="description">{{p.description}}</p>
-          <div class="info">
-            <i class="fa fa-star pull-left" style="margin-left: 0px" aria-hidden="true" title="stars"><span> {{p.stargazers_count}}</span></i>
-            <i class="fa fa-code-fork pull-left" aria-hidden="true" title="forks"> <span>{{p.forks}}</span></i>
-            <i class="fa fa-circle  pull-left" aria-hidden="true" :style="'color:'+ colors[p.language]">
-              &nbsp;<label class="language">{{p.language}}</label>   
-            </i>
-          </div>
-        </div>
+        <Project v-for="(p, i) in projects" :key="i"
+          :name="p.name"
+          :demo_url="p.demo_url"
+          :src_url="p.html_url"
+          :description="p.description"
+          :stars="p.stargazers_count"
+          :forks="p.forks"
+          :language="p.language"
+          :color="colors[p.language]"
+        />
       </div>
     </div>
     <div v-else>
@@ -37,8 +31,9 @@
 </template>
 
 <script>
+import Project from '@/components/Project'
 export default {
-  components: {},
+  components: {Project},
   name: "projects",
   data() {
     return {
@@ -119,6 +114,8 @@ export default {
       self.$store.dispatch("getProjects", function() {  
       });
     }
+    //set active tab
+    this.$store.commit('setCurrentTab', this.$options.name);
   }
 };
 </script>
@@ -127,68 +124,8 @@ export default {
 <style scoped>
 .projects-list {
   height: calc(100vh - (40px + 100px));
-  /* width: calc(100vw - 40px); */
   width: 100%;
   overflow: auto;
-}
-
-.project {
-  position: relative;
-  float: left;
-  background-color: white;
-  padding: 10px;
-  height: 150px;
-  width: 250px;
-  margin: 15px;
-  color: #586069 !important;
-  text-align: left;
-  font-family: Segoe UI;
-  border-style: solid;
-  border-width: 1px;
-  border-color: lightgray;
-}
-
-.project .title {
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;  
-}
-.project .title a{
-  color: rgba(73, 71, 71, 0.727) !important;
-}
-
-.project .title .code {
-  color: #373737;
-  background-color: whitesmoke;
-}
-
-.project .description {
-  margin-top: 10px;
-}
-
-.project .info {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 100%;
-}
-
-.code .fa {
-  font-size: 20px;
-  color: #212121;
-}
-
-.project .info .fa {
-  margin-left: 15px;
-}
-
-.info .fa span {
-  color: #373737;
-}
-
-.language{
-  font-family:'Segoe UI';
-  font-weight: 500;
 }
 
 .filter-list {
